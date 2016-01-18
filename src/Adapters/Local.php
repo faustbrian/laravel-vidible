@@ -1,0 +1,22 @@
+<?php
+
+namespace DraperStudio\Vidible\Adapters;
+
+use DraperStudio\Vidible\Contracts\ShareableInterface;
+use DraperStudio\Vidible\Models\Video;
+
+class Local extends AbstractAdapter implements ShareableInterface
+{
+    public function getShareableLink(Video $video, array $filters = [])
+    {
+        $config = $this->loadFlysystemConfig();
+
+        $path = str_replace([
+            public_path(), storage_path(),
+        ], null, $config['path']);
+
+        $path = config('app.url').$path.'/'.$this->buildFileName($video, $filters);
+
+        return $path;
+    }
+}
