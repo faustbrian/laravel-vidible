@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Laravel Vidible.
+ *
+ * (c) DraperStudio <hello@draperstudio.tech>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace DraperStudio\Vidible;
 
 use DraperStudio\Vidible\Contracts\Adapter;
@@ -13,26 +22,65 @@ use Illuminate\Foundation\Application;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\File\File;
 
+/**
+ * Class VidibleService.
+ *
+ * @author DraperStudio <hello@draperstudio.tech>
+ */
 class VidibleService
 {
+    /**
+     * @var
+     */
     private $ffmpeg;
 
+    /**
+     * @var Application
+     */
     protected $app;
 
+    /**
+     * @var Adapter
+     */
     protected $adapter;
 
+    /**
+     * @var VideoRepository
+     */
     protected $videos;
 
+    /**
+     * @var
+     */
     private $file;
 
+    /**
+     * @var
+     */
     private $model;
 
+    /**
+     * @var array
+     */
     private $attributes = [];
 
+    /**
+     * @var array
+     */
     private $filters = [];
 
+    /**
+     * @var bool
+     */
     private $overwrite = false;
 
+    /**
+     * VidibleService constructor.
+     *
+     * @param VideoRepository $videos
+     * @param Application     $app
+     * @param Adapter         $adapter
+     */
     public function __construct(VideoRepository $videos, Application $app, Adapter $adapter)
     {
         $this->videos = $videos;
@@ -45,6 +93,11 @@ class VidibleService
         ]);
     }
 
+    /**
+     * @param bool $overwrite
+     *
+     * @return mixed
+     */
     public function commit($overwrite = false)
     {
         $file = $this->getFile();
@@ -79,16 +132,31 @@ class VidibleService
         return $video;
     }
 
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
     public function getById($id)
     {
         return $this->videos->getById($id);
     }
 
+    /**
+     * @param $slot
+     *
+     * @return mixed
+     */
     public function getBySlot($slot)
     {
         return $this->videos->getBySlot($slot, $this->getModel());
     }
 
+    /**
+     * @param Video $video
+     *
+     * @return mixed
+     */
     public function getShareableLink(Video $video)
     {
         $filters = $this->getFilters();
@@ -100,22 +168,38 @@ class VidibleService
         return $this->getAdapter()->getShareableLink($video, $filters);
     }
 
+    /**
+     * @param Video $video
+     *
+     * @throws \Exception
+     */
     public function delete(Video $video)
     {
         $this->getAdapter()->delete($video, $this->getFilters());
         $video->delete();
     }
 
+    /**
+     * @param $id
+     */
     public function deleteById($id)
     {
         return $this->delete($this->getById($id), $this->getFilters());
     }
 
+    /**
+     * @param $slot
+     */
     public function deleteBySlot($slot)
     {
         return $this->delete($this->getBySlot($slot, $this->getModel()), $this->getFilters());
     }
 
+    /**
+     * @param File $file
+     *
+     * @return $this
+     */
     public function withFile(File $file)
     {
         $this->file = $file;
@@ -123,6 +207,11 @@ class VidibleService
         return $this;
     }
 
+    /**
+     * @param Vidible $model
+     *
+     * @return $this
+     */
     public function withModel(Vidible $model)
     {
         $this->model = $model;
@@ -130,6 +219,11 @@ class VidibleService
         return $this;
     }
 
+    /**
+     * @param array $attributes
+     *
+     * @return $this
+     */
     public function withAttributes(array $attributes)
     {
         $this->attributes = $attributes;
@@ -137,6 +231,11 @@ class VidibleService
         return $this;
     }
 
+    /**
+     * @param array $filters
+     *
+     * @return $this
+     */
     public function withFilters(array $filters)
     {
         $this->filters = $filters;
@@ -144,6 +243,12 @@ class VidibleService
         return $this;
     }
 
+    /**
+     * @param File  $video
+     * @param array $attributes
+     *
+     * @return mixed
+     */
     protected function createVideoRecord(File $video, array $attributes)
     {
         $meta = new Meta($video, $this->ffmpeg);
@@ -159,12 +264,24 @@ class VidibleService
         return $this->videos->create($attributes);
     }
 
+    /**
+     * @param File  $file
+     * @param Video $video
+     * @param array $filters
+     */
     protected function saveFile(File $file, Video $video, array $filters)
     {
         $videoFile = $this->runFilters($file, $video, $filters);
         $this->getAdapter()->write($videoFile, $video, $filters);
     }
 
+    /**
+     * @param File  $file
+     * @param Video $video
+     * @param array $filters
+     *
+     * @return Video
+     */
     protected function runFilters(File $file, Video $video, array $filters)
     {
         $availableFilters = config('vidible.filters');
@@ -192,6 +309,11 @@ class VidibleService
         return $video;
     }
 
+    /**
+     * @param $driver
+     * @param $config
+     * @param $video
+     */
     protected function applyFilter($driver, $config, $video)
     {
         $abstract = new $driver($config);
@@ -208,26 +330,41 @@ class VidibleService
         $abstract->applyFilter($video);
     }
 
+    /**
+     * @return Adapter
+     */
     protected function getAdapter()
     {
         return $this->adapter;
     }
 
+    /**
+     * @return mixed
+     */
     protected function getFile()
     {
         return $this->file;
     }
 
+    /**
+     * @return mixed
+     */
     protected function getModel()
     {
         return $this->model;
     }
 
+    /**
+     * @return array
+     */
     protected function getAttributes()
     {
         return $this->attributes;
     }
 
+    /**
+     * @return array
+     */
     protected function getFilters()
     {
         return $this->filters;

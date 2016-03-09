@@ -1,28 +1,48 @@
 <?php
 
+/*
+ * This file is part of Laravel Vidible.
+ *
+ * (c) DraperStudio <hello@draperstudio.tech>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace DraperStudio\Vidible;
 
 use Illuminate\Foundation\Application;
-use DraperStudio\ServiceProvider\ServiceProvider as BaseProvider;
 use InvalidArgumentException;
 
-class ServiceProvider extends BaseProvider
+/**
+ * Class ServiceProvider.
+ *
+ * @author DraperStudio <hello@draperstudio.tech>
+ */
+class ServiceProvider extends \DraperStudio\ServiceProvider\ServiceProvider
 {
-    protected $packageName = 'vidible';
-
+    /**
+     * Bootstrap the application services.
+     */
     public function boot()
     {
-        $this->setup(__DIR__)
-             ->publishMigrations()
-             ->publishConfig()
-             ->mergeConfig('vidible');
+        $this->publishMigrations();
+
+        $this->publishConfig();
     }
 
+    /**
+     * Register the application services.
+     */
     public function register()
     {
+        parent::register();
+
+        $this->mergeConfig();
+
         $this->app->bind(
-            'DraperStudio\Vidible\Contracts\VideoRepository',
-            'DraperStudio\Vidible\Repositories\EloquentVideoRepository'
+            \DraperStudio\Vidible\Contracts\VideoRepository::class,
+            \DraperStudio\Vidible\Repositories\EloquentVideoRepositor::class
         );
 
         $this->app->singleton('DraperStudio\Vidible\VidibleService', function (Application $app) {
@@ -36,6 +56,11 @@ class ServiceProvider extends BaseProvider
         });
     }
 
+    /**
+     * @param $app
+     *
+     * @return mixed
+     */
     protected function setFilesystemAdapter($app)
     {
         $adapterKey = config('vidible.default');
@@ -51,11 +76,26 @@ class ServiceProvider extends BaseProvider
         return $adapter;
     }
 
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
     public function provides()
     {
-        return [
-            'DraperStudio\Vidible\VidibleService',
-            'DraperStudio\Vidible\VideoRepository',
-        ];
+        return array_merge(parent::provides(), [
+            DraperStudio\Vidible\VidibleService::class,
+            DraperStudio\Vidible\VideoRepository::class,
+        ]);
+    }
+
+    /**
+     * Get the default package name.
+     *
+     * @return string
+     */
+    public function getPackageName()
+    {
+        return 'vidible';
     }
 }

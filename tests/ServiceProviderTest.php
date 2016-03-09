@@ -9,21 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace DraperStudio\Vidible\Contracts;
+namespace DraperStudio\Tests\Vidible;
 
-use FFMpeg\Media\Video;
+use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 
 /**
- * Interface FilterInterface.
+ * This is the service provider test class.
  *
  * @author DraperStudio <hello@draperstudio.tech>
  */
-interface FilterInterface
+class ServiceProviderTest extends AbstractTestCase
 {
-    /**
-     * @param Video $video
-     *
-     * @return mixed
-     */
-    public function applyFilter(Video $video);
+    use ServiceProviderTrait;
 }

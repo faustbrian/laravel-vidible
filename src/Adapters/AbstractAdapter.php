@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Laravel Vidible.
+ *
+ * (c) DraperStudio <hello@draperstudio.tech>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace DraperStudio\Vidible\Adapters;
 
 use DraperStudio\Vidible\Contracts\Adapter;
@@ -8,17 +17,42 @@ use FFMpeg\Media\Video as FFVideo;
 use GrahamCampbell\Flysystem\FlysystemManager;
 use League\Flysystem\Filesystem;
 
+/**
+ * Class AbstractAdapter.
+ *
+ * @author DraperStudio <hello@draperstudio.tech>
+ */
 abstract class AbstractAdapter implements Adapter
 {
+    /**
+     * @var FlysystemManager
+     */
     protected $flysystem;
 
+    /**
+     * @var
+     */
     protected $connection;
 
+    /**
+     * AbstractAdapter constructor.
+     *
+     * @param FlysystemManager $flysystem
+     */
     public function __construct(FlysystemManager $flysystem)
     {
         $this->flysystem = $flysystem;
     }
 
+    /**
+     * @param FFVideo $file
+     * @param Video   $video
+     * @param array   $filters
+     *
+     * @return mixed
+     *
+     * @throws InvalidArgumentException
+     */
     public function write(FFVideo $file, Video $video, array $filters = [])
     {
         $filename = $this->buildFileName($video, $filters);
@@ -38,6 +72,14 @@ abstract class AbstractAdapter implements Adapter
         return $result;
     }
 
+    /**
+     * @param Video $video
+     * @param array $filters
+     *
+     * @return mixed
+     *
+     * @throws InvalidArgumentException
+     */
     public function has(Video $video, array $filters = [])
     {
         return $this->getConnection()->has(
@@ -45,6 +87,14 @@ abstract class AbstractAdapter implements Adapter
         );
     }
 
+    /**
+     * @param Video $video
+     * @param array $filters
+     *
+     * @return mixed
+     *
+     * @throws InvalidArgumentException
+     */
     public function delete(Video $video, array $filters = [])
     {
         if ($this->has($video, $filters)) {
@@ -54,6 +104,9 @@ abstract class AbstractAdapter implements Adapter
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function loadFlysystemConfig()
     {
         $adapterKey = config('vidible.default');
@@ -62,6 +115,11 @@ abstract class AbstractAdapter implements Adapter
         return config('flysystem.connections.'.$adapterKey);
     }
 
+    /**
+     * @return string
+     *
+     * @throws InvalidArgumentException
+     */
     public function getConnection()
     {
         $connection = $this->connection;
@@ -74,11 +132,21 @@ abstract class AbstractAdapter implements Adapter
         return $connection;
     }
 
+    /**
+     * @param $connection
+     */
     public function setConnection($connection)
     {
         $this->connection = $this->flysystem->connection($this->connection);
     }
 
+    /**
+     * @param $file
+     *
+     * @return mixed
+     *
+     * @throws InvalidArgumentException
+     */
     protected function determineFormat($file)
     {
         $codec = $file->getFormat()->get('format_name');
@@ -94,6 +162,12 @@ abstract class AbstractAdapter implements Adapter
         }
     }
 
+    /**
+     * @param Video $video
+     * @param array $filters
+     *
+     * @return string
+     */
     protected function buildFileName(Video $video, array $filters = [])
     {
         return sprintf('%s-%s.%s',
@@ -103,6 +177,12 @@ abstract class AbstractAdapter implements Adapter
         );
     }
 
+    /**
+     * @param Video $video
+     * @param array $filters
+     *
+     * @return string
+     */
     protected function buildHash(Video $video, array $filters = [])
     {
         $state = [
@@ -115,6 +195,11 @@ abstract class AbstractAdapter implements Adapter
         return md5(json_encode($state));
     }
 
+    /**
+     * @param array $array
+     *
+     * @return array
+     */
     protected function recursiveKeySort(array $array)
     {
         ksort($array);
