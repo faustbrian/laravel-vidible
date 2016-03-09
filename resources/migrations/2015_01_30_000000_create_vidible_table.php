@@ -11,9 +11,6 @@ use Illuminate\Database\Schema\Blueprint;
  */
 class CreateVidibleTable extends Migration
 {
-    /**
-     *
-     */
     public function up()
     {
         Schema::create('vidible_video', function (Blueprint $table) {
@@ -38,9 +35,6 @@ class CreateVidibleTable extends Migration
         });
     }
 
-    /**
-     *
-     */
     public function down()
     {
         Schema::drop('vidible_video');
