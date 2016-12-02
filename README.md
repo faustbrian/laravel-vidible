@@ -11,15 +11,13 @@ $ composer require faustbrian/laravel-vidible
 And then include the service provider within `app/config/app.php`.
 
 ``` php
-'providers' => [
-    'BrianFaust\Vidible\VidibleServiceProvider'
-];
+BrianFaust\Vidible\VidibleServiceProvider::class
 ```
 
 To get started, you'll need to publish the vendor assets and modify it:
 
 ```bash
-php artisan vendor:publish
+php artisan vendor:publish --provider="BrianFaust\Vidible\VidibleServiceProvider"
 ```
 
 The package configuration will now be located at `app/config/vidible.php` and the migration at `database/migrations/2015_01_30_000000_create_vidible_table.php`.
