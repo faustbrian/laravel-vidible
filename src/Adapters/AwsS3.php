@@ -12,10 +12,10 @@
 namespace BrianFaust\Vidible\Adapters;
 
 use Aws\S3\S3Client;
-use BrianFaust\Vidible\Contracts\ShareableInterface;
-use BrianFaust\Vidible\Models\Video;
 use BrianFaust\Flysystem\AwsS3v2\AwsS3Adapter;
 use BrianFaust\Flysystem\Filesystem;
+use BrianFaust\Vidible\Contracts\ShareableInterface;
+use BrianFaust\Vidible\Models\Video;
 
 class AwsS3 extends AbstractAdapter implements ShareableInterface
 {
@@ -23,7 +23,7 @@ class AwsS3 extends AbstractAdapter implements ShareableInterface
     {
         $config = $this->loadFlysystemConfig();
         $client = S3Client::factory([
-            'key' => $config['key'],
+            'key'    => $config['key'],
             'secret' => $config['secret'],
             'region' => isset($config['region']) ? $config['region'] : null,
         ]);

@@ -11,9 +11,9 @@
 
 namespace BrianFaust\Vidible;
 
+use BrianFaust\ServiceProvider\ServiceProvider;
 use Illuminate\Foundation\Application;
 use InvalidArgumentException;
-use BrianFaust\ServiceProvider\ServiceProvider;
 
 class VidibleServiceProvider extends ServiceProvider
 {
