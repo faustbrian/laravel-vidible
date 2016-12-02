@@ -49,7 +49,7 @@ class VidibleService
         $this->adapter = $adapter;
 
         $this->ffmpeg = FFMpeg::create([
-            'ffmpeg.binaries' => config('vidible.ffmpeg'),
+            'ffmpeg.binaries'  => config('vidible.ffmpeg'),
             'ffprobe.binaries' => config('vidible.ffprobe'),
         ]);
     }
@@ -61,10 +61,10 @@ class VidibleService
         $attributes = $this->getAttributes();
         $filters = $this->getFilters();
 
-        if (! empty($attributes['slot'])) {
+        if (!empty($attributes['slot'])) {
             $record = $this->videos->getBySlot($attributes['slot'], $model);
 
-            if (! empty($record)) {
+            if (!empty($record)) {
                 if ($overwrite) {
                     $this->deleteById($record->id, $filters);
                 } else {
@@ -102,7 +102,7 @@ class VidibleService
     {
         $filters = $this->getFilters();
 
-        if (! $this->getAdapter()->has($video, $filters)) {
+        if (!$this->getAdapter()->has($video, $filters)) {
             throw new InvalidArgumentException('File not found.');
         }
 
@@ -158,11 +158,11 @@ class VidibleService
         $meta = new Meta($video, $this->ffmpeg);
 
         $attributes = array_merge($attributes, [
-            'width' => $meta->getWidth(),
-            'height' => $meta->getHeight(),
+            'width'       => $meta->getWidth(),
+            'height'      => $meta->getHeight(),
             'orientation' => $meta->getOrientation(),
-            'mime_type' => $video->getMimeType(),
-            'extension' => $video->guessExtension(),
+            'mime_type'   => $video->getMimeType(),
+            'extension'   => $video->guessExtension(),
         ]);
 
         return $this->videos->create($attributes);
@@ -181,13 +181,13 @@ class VidibleService
         $video = $this->ffmpeg->open($file->getRealPath());
 
         foreach ($filters as $key => $filter) {
-            if (! array_key_exists($filter, $availableFilters)) {
+            if (!array_key_exists($filter, $availableFilters)) {
                 throw new InvalidArgumentException("Unsupported filter [$filter]");
             }
 
             $filter = $availableFilters[$filter];
 
-            if (! isset($filter[0])) {
+            if (!isset($filter[0])) {
                 $this->applyFilter($filter['driver'], $filter['config'], $video);
             } else {
                 foreach ($filter as $key => $value) {
@@ -205,11 +205,11 @@ class VidibleService
     {
         $abstract = new $driver($config);
 
-        if (! $abstract) {
+        if (!$abstract) {
             throw new InvalidArgumentException("Filter [$abstract] not resolvable.");
         }
 
-        if (! $abstract instanceof FilterInterface) {
+        if (!$abstract instanceof FilterInterface) {
             $abstract = get_class($abstract);
             throw new InvalidArgumentException("Class [$abstract] does not implement FilterInterface.");
         }

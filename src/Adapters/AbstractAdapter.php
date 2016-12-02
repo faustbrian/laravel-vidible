@@ -11,11 +11,11 @@
 
 namespace BrianFaust\Vidible\Adapters;
 
+use BrianFaust\Flysystem\Filesystem;
 use BrianFaust\Vidible\Contracts\Adapter;
 use BrianFaust\Vidible\Models\Video;
 use FFMpeg\Media\Video as FFVideo;
 use GrahamCampbell\Flysystem\FlysystemManager;
-use BrianFaust\Flysystem\Filesystem;
 
 abstract class AbstractAdapter implements Adapter
 {
@@ -75,7 +75,7 @@ abstract class AbstractAdapter implements Adapter
     {
         $connection = $this->connection;
 
-        if (! $connection instanceof Filesystem) {
+        if (!$connection instanceof Filesystem) {
             $connection = get_class($connection);
             throw new InvalidArgumentException("Class [$connection] does not implement Filesystem.");
         }
@@ -115,7 +115,7 @@ abstract class AbstractAdapter implements Adapter
     protected function buildHash(Video $video, array $filters = [])
     {
         $state = [
-            'id' => (string) $video->getKey(),
+            'id'      => (string) $video->getKey(),
             'filters' => $filters,
         ];
 
