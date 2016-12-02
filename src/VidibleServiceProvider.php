@@ -13,8 +13,9 @@ namespace BrianFaust\Vidible;
 
 use Illuminate\Foundation\Application;
 use InvalidArgumentException;
+use BrianFaust\ServiceProvider\ServiceProvider;
 
-class ServiceProvider extends \BrianFaust\ServiceProvider\ServiceProvider
+class VidibleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -30,13 +31,13 @@ class ServiceProvider extends \BrianFaust\ServiceProvider\ServiceProvider
         $this->mergeConfig();
 
         $this->app->bind(
-            \BrianFaust\Vidible\Contracts\VideoRepository::class,
-            \BrianFaust\Vidible\Repositories\EloquentVideoRepositor::class
+            Contracts\VideoRepository::class,
+            Repositories\EloquentVideoRepositor::class
         );
 
-        $this->app->singleton('BrianFaust\Vidible\VidibleService', function (Application $app) {
+        $this->app->singleton(VidibleService::class, function (Application $app) {
             $service = new VidibleService(
-                $app->make('BrianFaust\Vidible\Contracts\VideoRepository'),
+                $app->make(Contracts\VideoRepository::class),
                 $app,
                 $this->setFilesystemAdapter($app)
             );
@@ -63,8 +64,8 @@ class ServiceProvider extends \BrianFaust\ServiceProvider\ServiceProvider
     public function provides()
     {
         return array_merge(parent::provides(), [
-            BrianFaust\Vidible\VidibleService::class,
-            BrianFaust\Vidible\VideoRepository::class,
+            Contracts\VidibleService::class,
+            Contracts\VideoRepository::class,
         ]);
     }
 
