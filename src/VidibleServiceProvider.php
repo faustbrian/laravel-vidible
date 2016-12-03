@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BrianFaust\Vidible;
 
 use BrianFaust\ServiceProvider\ServiceProvider;
@@ -17,14 +19,14 @@ use InvalidArgumentException;
 
 class VidibleServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->publishMigrations();
 
         $this->publishConfig();
     }
 
-    public function register()
+    public function register(): void
     {
         parent::register();
 
@@ -61,7 +63,7 @@ class VidibleServiceProvider extends ServiceProvider
         return $adapter;
     }
 
-    public function provides()
+    public function provides(): array
     {
         return array_merge(parent::provides(), [
             Contracts\VidibleService::class,
@@ -69,7 +71,7 @@ class VidibleServiceProvider extends ServiceProvider
         ]);
     }
 
-    public function getPackageName()
+    public function getPackageName(): string
     {
         return 'vidible';
     }
