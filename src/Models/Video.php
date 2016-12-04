@@ -24,6 +24,7 @@ namespace BrianFaust\Vidible\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Video extends Model
 {
@@ -40,7 +41,7 @@ class Video extends Model
         'orientation',
     ];
 
-    public function vidible()
+    public function vidible(): MorphTo
     {
         return $this->morphTo();
     }
