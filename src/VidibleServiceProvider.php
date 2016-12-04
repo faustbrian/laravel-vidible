@@ -22,11 +22,11 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible;
 
-use BrianFaust\ServiceProvider\ServiceProvider;
+use BrianFaust\ServiceProvider\AbstractServiceProvider;
 use Illuminate\Foundation\Application;
 use InvalidArgumentException;
 
-class VidibleServiceProvider extends ServiceProvider
+class VidibleServiceProvider extends AbstractServiceProvider
 {
     public function boot(): void
     {
