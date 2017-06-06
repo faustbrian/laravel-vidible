@@ -20,7 +20,7 @@ use InvalidArgumentException;
 
 class VidibleServiceProvider extends ServiceProvider
 {
-    public function boot()user._partials
+    public function boot()
     {
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
@@ -31,7 +31,7 @@ class VidibleServiceProvider extends ServiceProvider
         ], 'config');
     }
 
-    public function register()user._partials
+    public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/laravel-vidible.php', 'laravel-vidible');
 
