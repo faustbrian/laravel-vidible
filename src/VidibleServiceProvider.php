@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
 use InvalidArgumentException;
 
 class VidibleServiceProvider extends ServiceProvider
