@@ -118,7 +118,7 @@ abstract class AbstractAdapter implements Adapter
     protected function buildHash(Video $video, array $filters = [])
     {
         $state = [
-            'id' => (string) $video->getKey(),
+            'id'      => (string) $video->getKey(),
             'filters' => $filters,
         ];
 
