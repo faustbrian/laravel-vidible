@@ -52,7 +52,7 @@ class VidibleService
         $this->adapter = $adapter;
 
         $this->ffmpeg = FFMpeg::create([
-            'ffmpeg.binaries' => config('vidible.ffmpeg'),
+            'ffmpeg.binaries'  => config('vidible.ffmpeg'),
             'ffprobe.binaries' => config('vidible.ffprobe'),
         ]);
     }
@@ -161,11 +161,11 @@ class VidibleService
         $meta = new Meta($video, $this->ffmpeg);
 
         $attributes = array_merge($attributes, [
-            'width' => $meta->getWidth(),
-            'height' => $meta->getHeight(),
+            'width'       => $meta->getWidth(),
+            'height'      => $meta->getHeight(),
             'orientation' => $meta->getOrientation(),
-            'mime_type' => $video->getMimeType(),
-            'extension' => $video->guessExtension(),
+            'mime_type'   => $video->getMimeType(),
+            'extension'   => $video->guessExtension(),
         ]);
 
         return $this->videos->create($attributes);
