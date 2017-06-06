@@ -10,12 +10,6 @@ Require this package, with [Composer](https://getcomposer.org/), in the root dir
 $ composer require faustbrian/laravel-vidible
 ```
 
-And then include the service provider within `app/config/app.php`.
-
-``` php
-BrianFaust\Vidible\VidibleServiceProvider::class
-```
-
 To get started, you'll need to publish the vendor assets and modify it:
 
 ```bash
@@ -69,19 +63,11 @@ class VidibleController extends Controller {
 }
 ```
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
 ## Testing
 
 ``` bash
 $ phpunit
 ```
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 

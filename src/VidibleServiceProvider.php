@@ -14,22 +14,26 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible;
 
-use BrianFaust\ServiceProvider\AbstractServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
 use InvalidArgumentException;
 
-class VidibleServiceProvider extends AbstractServiceProvider
+class VidibleServiceProvider extends ServiceProvider
 {
-    public function boot(): void
+    public function boot()user._partials
     {
-        $this->publishMigrations();
+        $this->publishes([
+            __DIR__.'/../database/migrations' => database_path('migrations'),
+        ], 'migrations');
 
-        $this->publishConfig();
+        $this->publishes([
+            __DIR__.'/../config/laravel-vidible.php' => config_path('laravel-vidible.php'),
+        ], 'config');
     }
 
-    public function register(): void
+    public function register()user._partials
     {
-        parent::register();
+        $this->mergeConfigFrom(__DIR__.'/../config/laravel-vidible.php', 'laravel-vidible');
 
         $this->mergeConfig();
 
@@ -62,18 +66,5 @@ class VidibleServiceProvider extends AbstractServiceProvider
         $adapter->setConnection($config['connection']);
 
         return $adapter;
-    }
-
-    public function provides(): array
-    {
-        return array_merge(parent::provides(), [
-            Contracts\VidibleService::class,
-            Contracts\VideoRepository::class,
-        ]);
-    }
-
-    public function getPackageName(): string
-    {
-        return 'vidible';
     }
 }
