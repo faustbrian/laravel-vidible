@@ -20,6 +20,9 @@ use InvalidArgumentException;
 
 class VidibleServiceProvider extends ServiceProvider
 {
+    /**
+     * Bootstrap any application services.
+     */
     public function boot()
     {
         $this->publishes([
@@ -31,29 +34,51 @@ class VidibleServiceProvider extends ServiceProvider
         ], 'config');
     }
 
+    /**
+     * Register any application services.
+     */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/laravel-vidible.php', 'laravel-vidible');
 
         $this->mergeConfig();
 
-        $this->app->bind(
-            Contracts\VideoRepository::class,
-            Repositories\EloquentVideoRepositor::class
-        );
+        $this->registerRepository();
 
-        $this->app->singleton(VidibleService::class, function (Application $app) {
-            $service = new VidibleService(
-                $app->make(Contracts\VideoRepository::class),
+        $this->registerService();
+    }
+
+    /**
+     * Register the repository.
+     */
+    private function registerRepository()
+    {
+        $this->app->bind(Contracts\VideoRepository::class, Repositories\EloquentVideoRepository::class);
+    }
+
+    /**
+     * Register the service.
+     */
+    private function registerService()
+    {
+        $this->app->singleton(PicibleService::class, function (Application $app) {
+            $service = new PicibleService(
+                $app->make(Contracts\PictureRepository::class),
                 $app,
-                $this->setFilesystemAdapter($app)
+                $this->setFilesystemAdapter($app),
+                new ImageManager()
             );
 
             return $service;
         });
     }
 
-    protected function setFilesystemAdapter($app)
+    /**
+     * Set the filesystem adapater according to configuration.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     */
+    private function setFilesystemAdapter($app)
     {
         $adapterKey = config('vidible.default');
         $config = config('vidible.adapters.'.$adapterKey);
