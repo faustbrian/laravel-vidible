@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Filters;
 
-use BrianFaust\Vidible\Contracts\FilterInterface;
-use FFMpeg\Coordinate\Dimension;
-use FFMpeg\Coordinate\Point;
 use FFMpeg\Media\Video;
+use FFMpeg\Coordinate\Point;
+use FFMpeg\Coordinate\Dimension;
+use BrianFaust\Vidible\Contracts\FilterInterface;
 
 class Crop implements FilterInterface
 {

@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Adapters;
 
-use BrianFaust\Flysystem\Filesystem;
-use BrianFaust\Vidible\Contracts\Adapter;
-use BrianFaust\Vidible\Models\Video;
 use FFMpeg\Media\Video as FFVideo;
+use BrianFaust\Flysystem\Filesystem;
+use BrianFaust\Vidible\Models\Video;
+use BrianFaust\Vidible\Contracts\Adapter;
 use GrahamCampbell\Flysystem\FlysystemManager;
 
 abstract class AbstractAdapter implements Adapter
@@ -78,7 +78,7 @@ abstract class AbstractAdapter implements Adapter
     {
         $connection = $this->connection;
 
-        if (!$connection instanceof Filesystem) {
+        if (! $connection instanceof Filesystem) {
             $connection = get_class($connection);
             throw new InvalidArgumentException("Class [$connection] does not implement Filesystem.");
         }

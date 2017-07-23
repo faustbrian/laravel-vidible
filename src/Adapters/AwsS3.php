@@ -15,10 +15,10 @@ declare(strict_types=1);
 namespace BrianFaust\Vidible\Adapters;
 
 use Aws\S3\S3Client;
-use BrianFaust\Flysystem\AwsS3v2\AwsS3Adapter;
 use BrianFaust\Flysystem\Filesystem;
-use BrianFaust\Vidible\Contracts\ShareableInterface;
 use BrianFaust\Vidible\Models\Video;
+use BrianFaust\Flysystem\AwsS3v2\AwsS3Adapter;
+use BrianFaust\Vidible\Contracts\ShareableInterface;
 
 class AwsS3 extends AbstractAdapter implements ShareableInterface
 {
