@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Filters;
 
-use BrianFaust\Vidible\Contracts\FilterInterface;
-use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\Media\Video;
+use FFMpeg\Coordinate\TimeCode;
+use BrianFaust\Vidible\Contracts\FilterInterface;
 
 class Clip implements FilterInterface
 {

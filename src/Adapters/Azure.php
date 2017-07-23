@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Adapters;
 
-use BrianFaust\Vidible\Contracts\ShareableInterface;
 use BrianFaust\Vidible\Models\Video;
+use BrianFaust\Vidible\Contracts\ShareableInterface;
 
 class Azure extends AbstractAdapter implements ShareableInterface
 {

@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Filters;
 
-use BrianFaust\Vidible\Contracts\FilterInterface;
 use FFMpeg\Media\Video;
+use BrianFaust\Vidible\Contracts\FilterInterface;
 
 class Rotate implements FilterInterface
 {
