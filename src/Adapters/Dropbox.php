@@ -14,11 +14,11 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Adapters;
 
-use Dropbox\Client;
-use BrianFaust\Flysystem\Filesystem;
-use BrianFaust\Vidible\Models\Video;
 use BrianFaust\Flysystem\Dropbox\DropboxAdapter;
+use BrianFaust\Flysystem\Filesystem;
 use BrianFaust\Vidible\Contracts\ShareableInterface;
+use BrianFaust\Vidible\Models\Video;
+use Dropbox\Client;
 
 class Dropbox extends AbstractAdapter implements ShareableInterface
 {

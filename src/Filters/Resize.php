@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Filters;
 
-use FFMpeg\Media\Video;
-use FFMpeg\Coordinate\Dimension;
 use BrianFaust\Vidible\Contracts\FilterInterface;
+use FFMpeg\Coordinate\Dimension;
+use FFMpeg\Media\Video;
 
 class Resize implements FilterInterface
 {
