@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Video extends Model
