@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Filters;
 
-use FFMpeg\Media\Video;
-use FFMpeg\Coordinate\FrameRate as FFRate;
 use BrianFaust\Vidible\Contracts\FilterInterface;
+use FFMpeg\Coordinate\FrameRate as FFRate;
+use FFMpeg\Media\Video;
 
 class Framerate implements FilterInterface
 {

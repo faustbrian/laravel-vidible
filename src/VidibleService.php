@@ -14,16 +14,16 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible;
 
-use FFMpeg\FFMpeg;
-use InvalidArgumentException;
-use BrianFaust\Vidible\Util\Meta;
-use BrianFaust\Vidible\Models\Video;
-use Illuminate\Foundation\Application;
 use BrianFaust\Vidible\Contracts\Adapter;
-use BrianFaust\Vidible\Contracts\Vidible;
-use Symfony\Component\HttpFoundation\File\File;
 use BrianFaust\Vidible\Contracts\FilterInterface;
 use BrianFaust\Vidible\Contracts\VideoRepository;
+use BrianFaust\Vidible\Contracts\Vidible;
+use BrianFaust\Vidible\Models\Video;
+use BrianFaust\Vidible\Util\Meta;
+use FFMpeg\FFMpeg;
+use Illuminate\Foundation\Application;
+use InvalidArgumentException;
+use Symfony\Component\HttpFoundation\File\File;
 
 class VidibleService
 {
@@ -64,10 +64,10 @@ class VidibleService
         $attributes = $this->getAttributes();
         $filters = $this->getFilters();
 
-        if (! empty($attributes['slot'])) {
+        if (!empty($attributes['slot'])) {
             $record = $this->videos->getBySlot($attributes['slot'], $model);
 
-            if (! empty($record)) {
+            if (!empty($record)) {
                 if ($overwrite) {
                     $this->deleteById($record->id, $filters);
                 } else {
@@ -105,7 +105,7 @@ class VidibleService
     {
         $filters = $this->getFilters();
 
-        if (! $this->getAdapter()->has($video, $filters)) {
+        if (!$this->getAdapter()->has($video, $filters)) {
             throw new InvalidArgumentException('File not found.');
         }
 
@@ -184,13 +184,13 @@ class VidibleService
         $video = $this->ffmpeg->open($file->getRealPath());
 
         foreach ($filters as $key => $filter) {
-            if (! array_key_exists($filter, $availableFilters)) {
+            if (!array_key_exists($filter, $availableFilters)) {
                 throw new InvalidArgumentException("Unsupported filter [$filter]");
             }
 
             $filter = $availableFilters[$filter];
 
-            if (! isset($filter[0])) {
+            if (!isset($filter[0])) {
                 $this->applyFilter($filter['driver'], $filter['config'], $video);
             } else {
                 foreach ($filter as $key => $value) {
@@ -208,12 +208,13 @@ class VidibleService
     {
         $abstract = new $driver($config);
 
-        if (! $abstract) {
+        if (!$abstract) {
             throw new InvalidArgumentException("Filter [$abstract] not resolvable.");
         }
 
-        if (! $abstract instanceof FilterInterface) {
+        if (!$abstract instanceof FilterInterface) {
             $abstract = get_class($abstract);
+
             throw new InvalidArgumentException("Class [$abstract] does not implement FilterInterface.");
         }
 
