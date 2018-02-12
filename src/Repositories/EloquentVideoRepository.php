@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace BrianFaust\Vidible\Repositories;
 
-use BrianFaust\Vidible\Models\Video;
-use BrianFaust\Vidible\Contracts\Vidible;
 use BrianFaust\Vidible\Contracts\VideoRepository;
+use BrianFaust\Vidible\Contracts\Vidible;
+use BrianFaust\Vidible\Models\Video;
 
 class EloquentVideoRepository implements VideoRepository
 {
