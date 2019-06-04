@@ -1,16 +1,23 @@
 {
     "name": "artisanry/vidible",
     "description": "Video attachment and management for your Eloquent models.",
-    "keywords": ["laravel", "framework", "Laravel-vidible", "Laravel Vidible"],
+    "keywords": [
+        "laravel",
+        "framework",
+        "Laravel-vidible",
+        "Laravel Vidible"
+    ],
     "license": "MIT",
-    "authors": [{
-        "name": "Brian Faust",
-        "email": "hello@basecode.sh",
-        "homepage": "https://basecode.sh"
-    }],
+    "authors": [
+        {
+            "name": "Brian Faust",
+            "email": "hello@basecode.sh",
+            "homepage": "https://basecode.sh"
+        }
+    ],
     "require": {
-        "php": "^7.1",
-        "illuminate/support": "^5.6",
+        "php": "^7.2",
+        "illuminate/support": "^5.8",
         "graham-campbell/flysystem": "^4.1",
         "php-ffmpeg/php-ffmpeg": "^0.11"
     },
