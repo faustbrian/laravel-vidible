@@ -1,22 +1,22 @@
 # Laravel Vidible
 
-[![Build Status](https://img.shields.io/travis/faustbrian/Laravel-Vidible/master.svg?style=flat-square)](https://travis-ci.org/faustbrian/Laravel-Vidible)
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/faustbrian/laravel-vidible.svg?style=flat-square)]()
-[![Latest Version](https://img.shields.io/github/release/faustbrian/Laravel-Vidible.svg?style=flat-square)](https://github.com/faustbrian/Laravel-Vidible/releases)
-[![License](https://img.shields.io/packagist/l/faustbrian/Laravel-Vidible.svg?style=flat-square)](https://packagist.org/packages/faustbrian/Laravel-Vidible)
+[![Build Status](https://img.shields.io/travis/artisanry/Vidible/master.svg?style=flat-square)](https://travis-ci.org/artisanry/Vidible)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/artisanry/vidible.svg?style=flat-square)]()
+[![Latest Version](https://img.shields.io/github/release/artisanry/Vidible.svg?style=flat-square)](https://github.com/artisanry/Vidible/releases)
+[![License](https://img.shields.io/packagist/l/artisanry/Vidible.svg?style=flat-square)](https://packagist.org/packages/artisanry/Vidible)
 
 ## Installation
 
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
 
 ``` bash
-$ composer require faustbrian/laravel-vidible
+$ composer require artisanry/vidible
 ```
 
 To get started, you'll need to publish the vendor assets and modify it:
 
 ```bash
-php artisan vendor:publish --provider="BrianFaust\Vidible\VidibleServiceProvider"
+php artisan vendor:publish --provider="Artisanry\Vidible\VidibleServiceProvider"
 ```
 
 The package configuration will now be located at `app/config/vidible.php` and the migration at `database/migrations/2015_01_30_000000_create_vidible_table.php`.
@@ -35,7 +35,7 @@ php artisan migrate
 namespace App\Http\Controllers;
 
 use App\User;
-use BrianFaust\Vidible\VidibleService as Vidible;
+use Artisanry\Vidible\VidibleService as Vidible;
 use Illuminate\Http\Request;
 
 class VidibleController extends Controller {
@@ -74,7 +74,7 @@ $ phpunit
 
 ## Security
 
-If you discover a security vulnerability within this package, please send an e-mail to hello@brianfaust.me. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an e-mail to hello@basecode.sh. All security vulnerabilities will be promptly addressed.
 
 ## Credits
 
@@ -83,7 +83,7 @@ If you discover a security vulnerability within this package, please send an e-m
 
 ## License
 
-[MIT](LICENSE) © [Brian Faust](https://brianfaust.me)
+[MIT](LICENSE) © [Brian Faust](https://basecode.sh)
 
 <!-- ## To-Do
 - Implement **Batch processing** with an easy to use syntax.

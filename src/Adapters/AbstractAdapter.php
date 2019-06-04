@@ -6,17 +6,17 @@ declare(strict_types=1);
 /*
  * This file is part of Laravel Vidible.
  *
- * (c) Brian Faust <hello@brianfaust.de>
+ * (c) Brian Faust <hello@basecode.sh>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Vidible\Adapters;
+namespace Artisanry\Vidible\Adapters;
 
-use BrianFaust\Flysystem\Filesystem;
-use BrianFaust\Vidible\Contracts\Adapter;
-use BrianFaust\Vidible\Models\Video;
+use Artisanry\Flysystem\Filesystem;
+use Artisanry\Vidible\Contracts\Adapter;
+use Artisanry\Vidible\Models\Video;
 use FFMpeg\Media\Video as FFVideo;
 use GrahamCampbell\Flysystem\FlysystemManager;
 

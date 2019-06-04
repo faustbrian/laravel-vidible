@@ -6,17 +6,17 @@ declare(strict_types=1);
 /*
  * This file is part of Laravel Vidible.
  *
- * (c) Brian Faust <hello@brianfaust.de>
+ * (c) Brian Faust <hello@basecode.sh>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Vidible\Repositories;
+namespace Artisanry\Vidible\Repositories;
 
-use BrianFaust\Vidible\Contracts\VideoRepository;
-use BrianFaust\Vidible\Contracts\Vidible;
-use BrianFaust\Vidible\Models\Video;
+use Artisanry\Vidible\Contracts\VideoRepository;
+use Artisanry\Vidible\Contracts\Vidible;
+use Artisanry\Vidible\Models\Video;
 
 class EloquentVideoRepository implements VideoRepository
 {

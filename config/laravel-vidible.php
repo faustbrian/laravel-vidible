@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Laravel Vidible.
  *
- * (c) Brian Faust <hello@brianfaust.de>
+ * (c) Brian Faust <hello@basecode.sh>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,57 +18,57 @@ return [
     'adapters' => [
 
         'awss3' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\AwsS3',
+            'driver'     => 'Artisanry\Vidible\Adapters\AwsS3',
             'connection' => 'awss3',
         ],
 
         'azure' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\Azure',
+            'driver'     => 'Artisanry\Vidible\Adapters\Azure',
             'connection' => 'azure',
         ],
 
         'copy' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\Copy',
+            'driver'     => 'Artisanry\Vidible\Adapters\Copy',
             'connection' => 'copy',
         ],
 
         'dropbox' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\Dropbox',
+            'driver'     => 'Artisanry\Vidible\Adapters\Dropbox',
             'connection' => 'dropbox',
         ],
 
         'ftp' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\Ftp',
+            'driver'     => 'Artisanry\Vidible\Adapters\Ftp',
             'connection' => 'ftp',
         ],
 
         'gridfs' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\GridFs',
+            'driver'     => 'Artisanry\Vidible\Adapters\GridFs',
             'connection' => 'gridfs',
         ],
 
         'local' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\Local',
+            'driver'     => 'Artisanry\Vidible\Adapters\Local',
             'connection' => 'local',
         ],
 
         'rackspace' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\Rackspace',
+            'driver'     => 'Artisanry\Vidible\Adapters\Rackspace',
             'connection' => 'rackspace',
         ],
 
         'sftp' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\Sftp',
+            'driver'     => 'Artisanry\Vidible\Adapters\Sftp',
             'connection' => 'sftp',
         ],
 
         'webdav' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\WebDav',
+            'driver'     => 'Artisanry\Vidible\Adapters\WebDav',
             'connection' => 'webdav',
         ],
 
         'zip' => [
-            'driver'     => 'BrianFaust\Vidible\Adapters\ZipArchive',
+            'driver'     => 'Artisanry\Vidible\Adapters\ZipArchive',
             'connection' => 'zip',
         ],
 
@@ -81,7 +81,7 @@ return [
     'filters' => [
 
         'clip' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Clip',
+            'driver' => 'Artisanry\Vidible\Filters\Clip',
             'config' => [
                 'start'    => 30,
                 'duration' => 15,
@@ -89,7 +89,7 @@ return [
         ],
 
         'crop' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Crop',
+            'driver' => 'Artisanry\Vidible\Filters\Crop',
             'config' => [
                 'x'      => 25,
                 'y'      => 35,
@@ -99,7 +99,7 @@ return [
         ],
 
         'framerate' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Framerate',
+            'driver' => 'Artisanry\Vidible\Filters\Framerate',
             'config' => [
                 'framerate' => 60,
                 'gop'       => 12,
@@ -107,14 +107,14 @@ return [
         ],
 
         'resample' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Resample',
+            'driver' => 'Artisanry\Vidible\Filters\Resample',
             'config' => [
                 'rate' => 50,
             ],
         ],
 
         'resize' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Resize',
+            'driver' => 'Artisanry\Vidible\Filters\Resize',
             'config' => [
                 'width'        => 320,
                 'height'       => 240,
@@ -124,18 +124,18 @@ return [
         ],
 
         'rotate' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Rotate',
+            'driver' => 'Artisanry\Vidible\Filters\Rotate',
             'config' => [
                 'angle' => FFMpeg\Filters\Video\RotateFilter::ROTATE_90,
             ],
         ],
 
         'synchronize' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Synchronize',
+            'driver' => 'Artisanry\Vidible\Filters\Synchronize',
         ],
 
         'watermark' => [
-            'driver' => 'BrianFaust\Vidible\Filters\Watermark',
+            'driver' => 'Artisanry\Vidible\Filters\Watermark',
             'config' => [
                 'watermarkPath' => storage_path('files/watermark.png'),
                 'coordinates'   => [
@@ -148,13 +148,13 @@ return [
 
         'random' => [
             [
-                'driver' => 'BrianFaust\Vidible\Filters\Clip',
+                'driver' => 'Artisanry\Vidible\Filters\Clip',
                 'config' => [
                     'start'    => 3,
                     'duration' => 2,
                 ],
             ], [
-                'driver' => 'BrianFaust\Vidible\Filters\Crop',
+                'driver' => 'Artisanry\Vidible\Filters\Crop',
                 'config' => [
                     'x'      => 25,
                     'y'      => 35,
@@ -162,18 +162,18 @@ return [
                     'height' => 150,
                 ],
             ], [
-                'driver' => 'BrianFaust\Vidible\Filters\Framerate',
+                'driver' => 'Artisanry\Vidible\Filters\Framerate',
                 'config' => [
                     'framerate' => 60,
                     'gop'       => 12,
                 ],
             ], [
-                'driver' => 'BrianFaust\Vidible\Filters\Resample',
+                'driver' => 'Artisanry\Vidible\Filters\Resample',
                 'config' => [
                     'rate' => 50,
                 ],
             ], [
-                'driver' => 'BrianFaust\Vidible\Filters\Resize',
+                'driver' => 'Artisanry\Vidible\Filters\Resize',
                 'config' => [
                     'width'        => 320,
                     'height'       => 240,
@@ -181,14 +181,14 @@ return [
                     'useStandards' => true,
                 ],
             ], [
-                'driver' => 'BrianFaust\Vidible\Filters\Rotate',
+                'driver' => 'Artisanry\Vidible\Filters\Rotate',
                 'config' => [
                     'angle' => FFMpeg\Filters\Video\RotateFilter::ROTATE_90,
                 ],
             ], [
-                'driver' => 'BrianFaust\Vidible\Filters\Synchronize',
+                'driver' => 'Artisanry\Vidible\Filters\Synchronize',
             ], [
-                'driver' => 'BrianFaust\Vidible\Filters\Watermark',
+                'driver' => 'Artisanry\Vidible\Filters\Watermark',
                 'config' => [
                     'watermarkPath' => storage_path('files/watermark.png'),
                     'coordinates'   => [

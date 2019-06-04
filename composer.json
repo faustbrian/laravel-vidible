@@ -1,12 +1,12 @@
 {
-    "name": "faustbrian/laravel-vidible",
+    "name": "artisanry/vidible",
     "description": "Video attachment and management for your Eloquent models.",
-    "keywords": ["laravel", "framework", "Laravel-vidible", "Laravel Vidible", "Brian Faust", "faustbrian"],
+    "keywords": ["laravel", "framework", "Laravel-vidible", "Laravel Vidible"],
     "license": "MIT",
     "authors": [{
         "name": "Brian Faust",
-        "email": "hello@brianfaust.me",
-        "homepage": "https://brianfaust.me"
+        "email": "hello@basecode.sh",
+        "homepage": "https://basecode.sh"
     }],
     "require": {
         "php": "^7.1",
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BrianFaust\\Vidible\\": "src/"
+            "Artisanry\\Vidible\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BrianFaust\\Tests\\Vidible\\": "tests"
+            "Artisanry\\Tests\\Vidible\\": "tests"
         }
     },
     "config": {
@@ -39,7 +39,7 @@
         },
         "laravel": {
             "providers": [
-                "BrianFaust\\Vidible\\VidibleServiceProvider"
+                "Artisanry\\Vidible\\VidibleServiceProvider"
             ]
         }
     },

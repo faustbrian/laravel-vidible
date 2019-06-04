@@ -6,20 +6,20 @@ declare(strict_types=1);
 /*
  * This file is part of Laravel Vidible.
  *
- * (c) Brian Faust <hello@brianfaust.de>
+ * (c) Brian Faust <hello@basecode.sh>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Vidible;
+namespace Artisanry\Vidible;
 
-use BrianFaust\Vidible\Contracts\Adapter;
-use BrianFaust\Vidible\Contracts\FilterInterface;
-use BrianFaust\Vidible\Contracts\VideoRepository;
-use BrianFaust\Vidible\Contracts\Vidible;
-use BrianFaust\Vidible\Models\Video;
-use BrianFaust\Vidible\Util\Meta;
+use Artisanry\Vidible\Contracts\Adapter;
+use Artisanry\Vidible\Contracts\FilterInterface;
+use Artisanry\Vidible\Contracts\VideoRepository;
+use Artisanry\Vidible\Contracts\Vidible;
+use Artisanry\Vidible\Models\Video;
+use Artisanry\Vidible\Util\Meta;
 use FFMpeg\FFMpeg;
 use Illuminate\Foundation\Application;
 use InvalidArgumentException;
