@@ -14,11 +14,11 @@ declare(strict_types=1);
 
 namespace Artisanry\Vidible\Adapters;
 
-use Aws\S3\S3Client;
 use Artisanry\Flysystem\AwsS3v2\AwsS3Adapter;
 use Artisanry\Flysystem\Filesystem;
 use Artisanry\Vidible\Contracts\ShareableInterface;
 use Artisanry\Vidible\Models\Video;
+use Aws\S3\S3Client;
 
 class AwsS3 extends AbstractAdapter implements ShareableInterface
 {
