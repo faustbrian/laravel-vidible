@@ -17,7 +17,7 @@
         "php": "^7.2",
         "illuminate/support": "^5.8|^6.0",
         "graham-campbell/flysystem": "^6.0.0",
-        "php-ffmpeg/php-ffmpeg": "^0.11"
+        "php-ffmpeg/php-ffmpeg": "^0.14.0"
     },
     "require-dev": {
         "graham-campbell/testbench": "^5.0",
